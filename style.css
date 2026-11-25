@@ -1,0 +1,225 @@
+/* =====================================================
+   Mobile First: сначала правила для смартфонов,
+   затем через Media Query — для планшетов и десктопов
+   ===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    color: #222;
+}
+
+/* ---------- Шапка (100% ширины) ---------- */
+#page-header {
+    width: 100%;
+    background-color: #729fcf;
+    border-bottom: 1px solid #3465a4;
+}
+
+.header-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+#logo {
+    flex: none;
+    margin-right: 15px;
+}
+
+/* На смартфоне обёртка не участвует в раскладке:
+   название и меню становятся элементами flex-контейнера шапки */
+.header-text {
+    display: contents;
+}
+
+#site-name {
+    flex: 1;
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* ---------- Меню: вертикальный список на всю ширину ---------- */
+#main-menu {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #3465a4;
+}
+
+.menu-link {
+    display: block;
+    padding: 4px 0;
+    color: #000;
+    text-decoration: none;
+}
+
+.menu-link:hover {
+    background-color: #fff;
+}
+
+/* ---------- Содержимое: flex-колонка, 100% ширины ---------- */
+#content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 20px auto;
+    padding: 0 10px;
+}
+
+h2 {
+    color: #333;
+}
+
+/* В HTML список ссылок идёт перед таблицей,
+   на смартфоне таблица отображается выше списка (Flex Box order) */
+#table {
+    order: 1;
+    overflow-x: auto;
+}
+
+#links {
+    order: 2;
+}
+
+#form {
+    order: 3;
+}
+
+ul li {
+    margin-bottom: 6px;
+}
+
+/* ---------- Таблица ---------- */
+#languages-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#languages-table caption {
+    margin-bottom: 8px;
+    font-weight: bold;
+    text-align: left;
+}
+
+#languages-table th,
+#languages-table td {
+    padding: 8px 10px;
+    border: 1px solid #3465a4;
+    text-align: left;
+}
+
+#languages-table th {
+    background-color: #3465a4;
+    color: #fff;
+}
+
+#languages-table tbody tr:nth-child(odd) {
+    background-color: #e4eef8;
+}
+
+#languages-table tbody tr:nth-child(even) {
+    background-color: #fff;
+}
+
+/* ---------- Форма ---------- */
+#form form {
+    margin-top: 20px;
+}
+
+#form p {
+    margin: 10px 0;
+}
+
+textarea {
+    width: 100%;
+    max-width: 500px;
+}
+
+/* ---------- Подвал (100% ширины) ---------- */
+#page-footer {
+    width: 100%;
+    margin-top: 30px;
+    background-color: #729fcf;
+    border-top: 1px solid #3465a4;
+}
+
+.footer-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px 10px;
+}
+
+.footer-inner p {
+    margin: 0;
+}
+
+/* =====================================================
+   Планшеты и десктопы: как в задании 2
+   ===================================================== */
+@media (min-width: 768px) {
+
+    /* Шапка на всю ширину окна: лого и название слева, меню справа */
+    .header-inner {
+        flex-wrap: nowrap;
+        max-width: none;
+        padding: 10px 20px;
+    }
+
+    .header-text {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    #site-name {
+        flex: none;
+        margin: 0;
+        font-size: 24px;
+    }
+
+    #main-menu {
+        flex-basis: auto;
+        flex-direction: row;
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+    }
+
+    .menu-link {
+        margin-left: 20px;
+        padding: 4px 8px;
+    }
+
+    #content {
+        max-width: 960px;
+        padding: 0 20px;
+    }
+
+    /* Порядок блоков — как в HTML: ссылки, таблица, форма */
+    #table,
+    #links,
+    #form {
+        order: 0;
+    }
+
+    /* Подвал на всю ширину окна: надпись слева */
+    .footer-inner {
+        max-width: none;
+        padding: 20px;
+        text-align: left;
+    }
+}
